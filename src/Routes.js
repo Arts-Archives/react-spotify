@@ -3,17 +3,30 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Route, BrowserRouter } from 'react-router-dom';
 // Our application routes
-import App from './App';
+import App from './components/App';
+import Dashboard from "./components/Dashboard";
 
 const appRoutes = [
-    {
-        exact: true,
-        path: '/',
-        component: App
-    }
+  {
+    exact: true,
+    path: "/",
+    component: App
+  },
+  {
+    exact: false,
+    path: "/react-spotify",
+    component: Dashboard
+  }
 ];
 
 class Routes extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+
+        };
+    }
 
     renderRoutes = (routes) => {
         let allRoutes = [];
@@ -25,6 +38,7 @@ class Routes extends Component {
                     path={route.path}
                     component={route.component}
                     key={index}
+                    {...this.props}
                 />
             );
         })
