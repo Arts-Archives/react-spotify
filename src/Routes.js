@@ -5,6 +5,7 @@ import { Route, BrowserRouter } from 'react-router-dom';
 // Our application routes
 import App from './components/App';
 import Dashboard from "./components/Dashboard";
+import ArtistAlbums from "./components/ArtistAlbums";
 
 const appRoutes = [
   {
@@ -16,6 +17,11 @@ const appRoutes = [
     exact: false,
     path: "/react-spotify",
     component: Dashboard
+  },
+  {
+    exact: false,
+    path: "/artist-albums/:artistId/:artistName",
+    component: ArtistAlbums
   }
 ];
 

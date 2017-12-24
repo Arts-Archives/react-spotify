@@ -10,7 +10,8 @@ export default class Dashboard extends Component {
         this.state = {
             current_user: [],
             query: '',
-            artists: []
+            artists: [],
+            albums: []
         }        
     }
 
@@ -52,7 +53,6 @@ export default class Dashboard extends Component {
             let results = [];
             artists.map((artist, index) => {
                 if(artist.images[0]!=undefined){
-                    console.log(artist.images[0]);
                     let hasImage = artist.images[0];
                     results.push(
                         <div className="col-md-3">
@@ -61,7 +61,8 @@ export default class Dashboard extends Component {
                                 id={artist.id}
                                 key={index}
                                 imageURL={hasImage.url}
-                                onClick={(event) => this.searchAlbums(event,artist.id)}                                                     
+                                onClick={(event) => this.searchAlbums(event,artist.id, artist.name)}
+                                text="Show Albums"                                                     
                             />
                         </div>
                     )
@@ -73,9 +74,25 @@ export default class Dashboard extends Component {
         }
     }
 
-    searchAlbums = (event, artistId) => {
+    searchAlbums = (event, artistId, name) => {
         event.preventDefault();
-        console.log('artistId',artistId)
+        const { authToken } = this.props.location.state.auth;
+        console.log('artistId',artistId);
+        let albums;
+        axios.get(`https://api.spotify.com/v1/artists/${artistId}/albums?album_type=album&access_token=${authToken}`)
+        .then(response => {
+            console.log(response);
+            this.setState({ albums: response.data.items });
+            albums = response.data.items;            
+        })
+        .then(()=> this.props.history.push(
+            `/artist-albums/${artistId}/${name}`, 
+            { 
+                data: { albums },
+                current_user: { user: this.state.current_user.user }
+            }
+        ))
+        .catch(error => console.log(error));
     }
 
     render() {

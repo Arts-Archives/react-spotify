@@ -45,7 +45,10 @@ export default class App extends Component {
             user = response.data;
         })
         .then(() => this.props.history.push('/react-spotify', { current_user: { user }, auth: { authToken } } ) )
-        .catch(error => console.log(error));
+        .catch(error => {
+            console.log(error);
+            window.location.assign(spotifyWebApiURL);
+        });
     } else {
       window.location.assign(spotifyWebApiURL);
     }

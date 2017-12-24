@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 
-const Card = ({ imageURL, name, id, onClick }) => {
+const Card = ({ imageURL, name, id, onClick, text }) => {
     return (
         <div className="card mt-5" key={id}>
             <img 
@@ -18,7 +18,7 @@ const Card = ({ imageURL, name, id, onClick }) => {
                     className="btn btn-primary"
                     onClick={onClick} 
                 >
-                    Show Albums
+                    {text}
                 </button>               
             </div>
         </div>
