@@ -31,7 +31,11 @@ module.exports = {
 						'transform-class-properties'
 					]
 				}
-			}
+			},
+			{
+        		test: /\.css$/, 
+        		loader: "style-loader!css-loader"
+      		}
 		]
 	},
 

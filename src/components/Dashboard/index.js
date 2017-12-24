@@ -1,12 +1,16 @@
 import React, { Component  } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import Nav from '../Nav';
+import { Card } from '../common';
 
 export default class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
             current_user: [],
-            query: ''
+            query: '',
+            artists: []
         }        
     }
 
@@ -19,42 +23,98 @@ export default class Dashboard extends Component {
         }
     }
 
+    componentWillReceiveProps = (nextProps) => {
+      console.log('cwp ran', nextProps)
+    }
+    
+
     captureSearch = (searchTerm) => {
         this.setState({ query: searchTerm })
+    }
+
+    searchSpotifyArtists = (event) => {
+        event.preventDefault();
+        const { authToken } = this.props.location.state.auth;
+        console.log('query',this.state.query);
+        let artists;
+        axios.get(`https://api.spotify.com/v1/search?q=${this.state.query}&type=artist&access_token=${authToken}`)
+        .then(response => {
+            artists = response.data.artists;
+            this.setState({artists});
+        })
+        .catch(error => console.log(error))
+
+    }
+    
+    showArtistResults = (artists) => {
+        if(artists!=undefined){
+            console.log('artists inside showArtists',artists)
+            let results = [];
+            artists.map((artist, index) => {
+                if(artist.images[0]!=undefined){
+                    console.log(artist.images[0]);
+                    let hasImage = artist.images[0];
+                    results.push(
+                        <div className="col-md-3">
+                            <Card 
+                                name={artist.name}
+                                id={artist.id}
+                                key={index}
+                                imageURL={hasImage.url}
+                                onClick={(event) => this.searchAlbums(event,artist.id)}                                                     
+                            />
+                        </div>
+                    )
+                }             
+            })
+            return results
+        }else{
+            return <p></p>
+        }
+    }
+
+    searchAlbums = (event, artistId) => {
+        event.preventDefault();
+        console.log('artistId',artistId)
     }
 
     render() {
         console.log('this.props in profile', this.props);
         console.log('this.state in profile', this.state);
         const { images, display_name } = this.props.location.state.current_user.user;
-        return <nav className="navbar navbar-toggleable-md navbar-light bg-faded justify-content-between">
-            <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon" />
-            </button>
-            <a className="navbar-brand" href="#">
-              <img className="d-inline-block align-top" src={images[0].url} alt="" height="60" width="60" />
-            </a>
-
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul className="navbar-nav mr-auto">
-                <li className="nav-item active">
-                  <Link className="nav-link" to="/">
-                    React Spotify
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    {display_name}
-                  </a>
-                </li>
-              </ul>
-              <form className="form-inline my-2 my-lg-0">
-                <input className="form-control mr-sm-2" type="text" placeholder="Search" onChange={event => this.captureSearch(event.target.value)} />
-                <button className="btn btn-outline-success my-2 my-sm-0" type="submit">
-                  Search
-                </button>
-              </form>
+        return <div>
+            <Nav imageURL={images[0].url} onChange={event => this.captureSearch(event.target.value)} display_name={display_name} />
+            <div className="row mt-5">
+              <div className="col-lg">
+                <p className="lead text-center">Search Artists</p>
+              </div>
             </div>
-          </nav>;
+            <div className="row mt-5 justify-content-center">
+              <div className="col-lg-6">
+                <form onSubmit={this.searchSpotifyArtists} className="text-center">
+                  <div className="form-group">
+                    <input 
+                        type="text" 
+                        className="form-control text-center" 
+                        placeholder="enter artist name" 
+                        onChange={event => this.captureSearch(event.target.value)}
+                        value={this.state.query} 
+                    />
+                  </div>
+                  <div className="form-group">
+                    <button 
+                        className="btn btn-outline-success" 
+                        type="submit"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div className="row">
+                {this.showArtistResults(this.state.artists.items)}
+            </div>
+          </div>;            
     }
 }

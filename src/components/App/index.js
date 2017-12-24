@@ -36,14 +36,15 @@ export default class App extends Component {
     event.preventDefault();
    
     if (this.state.authorized) {
+      const { authToken } = this.state;
       let user;
       axios
-        .get(spotifyProfileURL + this.state.authToken)
+        .get(spotifyProfileURL + authToken)
         .then(response => {
             this.setState({ profile: response.data });
             user = response.data;
         })
-        .then(() => this.props.history.push('/react-spotify', { current_user: { user } } ) )
+        .then(() => this.props.history.push('/react-spotify', { current_user: { user }, auth: { authToken } } ) )
         .catch(error => console.log(error));
     } else {
       window.location.assign(spotifyWebApiURL);
