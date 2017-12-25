@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Nav from '../Nav';
 import { Card } from '../common';
 
@@ -6,8 +7,18 @@ export default class ArtistAlbums extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            current_user: [],
+            tracks: []
         };
+    }
+
+    componentDidMount = () => {
+        const { current_user } = this.props.location.state;
+        if(current_user){
+            this.setState({ current_user })
+        }else{
+            this.props.history.push('/')
+        }
     }
 
     showAlbums = (albums) => {
@@ -24,7 +35,7 @@ export default class ArtistAlbums extends Component {
                                 id={album.id}
                                 key={index}
                                 imageURL={hasImage.url}
-                                onClick={(event) => {event.preventDefault();console.log('clicked')}}
+                                onClick={event => this.getAlbumTracks(event, album.id, album.name)}
                                 text="Show Tracks"                                                     
                             />
                         </div>
@@ -37,14 +48,40 @@ export default class ArtistAlbums extends Component {
         }
     }
 
+    getAlbumTracks = (event, albumId, name) => {
+        event.preventDefault();
+        const { authToken } = this.props.location.state.auth;
+        console.log('albumId',albumId);
+        let tracks;
+        axios.get(`https://api.spotify.com/v1/albums/${albumId}/tracks?access_token=${authToken}`)
+        .then(response => {
+            console.log(response);
+            this.setState({ tracks: response.data.items });
+            tracks = response.data.items;            
+        })
+        .then(()=> this.props.history.push(
+            `/album-tracks/${albumId}/${name}`, 
+            { 
+                data: { tracks },
+                current_user: { user: this.state.current_user.user },
+                auth: { authToken }
+            }
+        ))
+        .catch(error => console.log(error));
+    }
+
     render() {
         console.log('this.props',this.props);
-        const { images, display_name } = this.props.location.state.current_user.user;
+        const { data: { albums }, current_user: { user: { images, display_name } } } = this.props.location.state;
         return (
             <div>
-                <Nav imageURL={images[0].url} onChange={()=> console.log('changed')} display_name={display_name} />
+                <Nav 
+                    imageURL={images[0].url} 
+                    onChange={()=> console.log('changed')} 
+                    display_name={display_name} 
+                />
                 <div className="row">
-                    {this.showAlbums(this.props.location.state.data.albums)}
+                    {this.showAlbums(albums)}
                 </div>
             </div>
         )

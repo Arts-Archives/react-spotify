@@ -89,7 +89,8 @@ export default class Dashboard extends Component {
             `/artist-albums/${artistId}/${name}`, 
             { 
                 data: { albums },
-                current_user: { user: this.state.current_user.user }
+                current_user: { user: this.state.current_user.user },
+                auth: { authToken }
             }
         ))
         .catch(error => console.log(error));
