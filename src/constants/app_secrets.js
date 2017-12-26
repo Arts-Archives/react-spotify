@@ -1,6 +1,6 @@
 const clientID = "28c0d2a90c924223a48b18dc0801c512";
 const clientSecret = "28af750c1a7446168a886c1e9f9af7e0";
-const redirectURI = "http://localhost:8080/";
+const redirectURI = "https://spot-react-ify.herokuapp.com/";
 const scopes =
   "user-read-private+user-read-email+playlist-read-private+user-top-read";
 const spotifyWebApiURL = `https://accounts.spotify.com/authorize/?client_id=${clientID
