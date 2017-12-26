@@ -56,8 +56,7 @@ export default class AlbumTracks extends Component {
         return (
             <div>
                 <Nav 
-                    imageURL={images[0].url} 
-                    onChange={()=> console.log('changed')} 
+                    imageURL={images[0].url}  
                     display_name={display_name} 
                 />
                 <div className="justify-content-center mt-5 row">

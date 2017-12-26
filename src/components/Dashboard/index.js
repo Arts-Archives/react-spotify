@@ -11,7 +11,8 @@ export default class Dashboard extends Component {
             current_user: [],
             query: '',
             artists: [],
-            albums: []
+            albums: [],
+            error: ''
         }        
     }
 
@@ -41,9 +42,13 @@ export default class Dashboard extends Component {
         axios.get(`https://api.spotify.com/v1/search?q=${this.state.query}&type=artist&access_token=${authToken}`)
         .then(response => {
             artists = response.data.artists;
-            this.setState({artists});
+            this.setState({artists, error: ''});
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+            this.setState({ 
+                error: 'Sorry your search didn\'t return any results...'
+            })
+        })
 
     }
     
@@ -102,7 +107,10 @@ export default class Dashboard extends Component {
         console.log('this.state in profile', this.state);
         const { images, display_name } = this.props.location.state.current_user.user;
         return <div>
-            <Nav imageURL={images[0].url} onChange={event => this.captureSearch(event.target.value)} display_name={display_name} />
+            <Nav 
+                imageURL={images[0].url} 
+                display_name={display_name}
+            />
             <div className="row mt-5">
               <div className="col-lg">
                 <p className="lead text-center">Search Artists</p>
@@ -116,7 +124,12 @@ export default class Dashboard extends Component {
                         type="text" 
                         className="form-control text-center" 
                         placeholder="enter artist name" 
-                        onChange={event => this.captureSearch(event.target.value)}
+                        onChange={
+                            event => {
+                                this.captureSearch(event.target.value)
+                                this.setState({ error: ''})
+                            }
+                        }
                         value={this.state.query} 
                     />
                   </div>
@@ -128,6 +141,11 @@ export default class Dashboard extends Component {
                       Submit
                     </button>
                   </div>
+                  <div className="form-group">
+                    <p style={{color: '#e74c3c'}}>
+                        {this.state.error}
+                    </p>
+                </div>
                 </form>
               </div>
             </div>

@@ -78,7 +78,6 @@ export default class ArtistAlbums extends Component {
             <div>
                 <Nav 
                     imageURL={images[0].url} 
-                    onChange={()=> console.log('changed')} 
                     display_name={display_name} 
                 />
                 <div className="justify-content-center mt-5 row">
