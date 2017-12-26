@@ -81,6 +81,11 @@ export default class ArtistAlbums extends Component {
                     onChange={()=> console.log('changed')} 
                     display_name={display_name} 
                 />
+                <div className="justify-content-center mt-5 row">
+                    <p className="text-center display-5">
+                        Album Results for { albums[0].artists[0].name}
+                    </p>
+                </div>
                 <div className="row">
                     {this.showAlbums(albums)}
                 </div>

@@ -52,6 +52,7 @@ export default class AlbumTracks extends Component {
     render() {
         console.log("this.props in Tracks", this.props);
         const { data: { tracks }, current_user: { user: { images, display_name } } } = this.props.location.state;
+        const albumNameCleanedUp = this.props.match.params.albumName.replace(/[-]/g," ").trim();
         return (
             <div>
                 <Nav 
@@ -59,6 +60,11 @@ export default class AlbumTracks extends Component {
                     onChange={()=> console.log('changed')} 
                     display_name={display_name} 
                 />
+                <div className="justify-content-center mt-5 row">
+                    <p className="text-center display-5">
+                        Displaying tracks from the album { albumNameCleanedUp }
+                    </p>
+                </div>
                 <div className="row">
                     {this.showTracks(tracks)}
                 </div>
