@@ -25,21 +25,12 @@ const Card = ({ imageURL, name, id, onClick, text }) => {
             </div>
         )
     }else{
-        return (
-            <div className="card mt-5" key={id}>                
-                <div className="card-body">
-                    <h4 className="card-title">{name}</h4>
-                    <p className="card-text"></p>
-                    <button 
-                        href="#" 
-                        className="btn btn-primary"
-                        onClick={onClick} 
-                    >
-                        {text}
-                    </button>               
-                </div>
+        return <div className="card mt-5" key={id}>
+            <div className="card-body" style={styles.trackStyles}>
+              <h4 className="card-title">{name}</h4>
+              <p className="card-text" />            
             </div>
-        )
+          </div>;
     }
     
 }
@@ -47,8 +38,12 @@ const Card = ({ imageURL, name, id, onClick, text }) => {
 const styles = {
     imageStyles: {
         maxWidth: 280,
-        maxHeight: 200,
-        minHeight: 200
+        minHeight: 200,
+        maxHeight: 200
+    },
+    trackStyles: {
+        minHeight: 130,
+        overFlow: 'hidden'
     }
 }
 

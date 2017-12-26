@@ -53,6 +53,7 @@ export default class ArtistAlbums extends Component {
         const { authToken } = this.props.location.state.auth;
         console.log('albumId',albumId);
         let tracks;
+        let cleanName = name.replace(/[ ]/g,"-").replace(/[()]/g,"").trim();
         axios.get(`https://api.spotify.com/v1/albums/${albumId}/tracks?access_token=${authToken}`)
         .then(response => {
             console.log(response);
@@ -60,7 +61,7 @@ export default class ArtistAlbums extends Component {
             tracks = response.data.items;            
         })
         .then(()=> this.props.history.push(
-            `/album-tracks/${albumId}/${name}`, 
+            `/album-tracks/${albumId}/${cleanName}`, 
             { 
                 data: { tracks },
                 current_user: { user: this.state.current_user.user },

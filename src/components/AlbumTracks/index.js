@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import ReactPlayer from 'react-player'; 
 import Nav from '../Nav';
 import { Card } from "../common";
 
@@ -16,16 +17,23 @@ export default class AlbumTracks extends Component {
         if(tracks!=undefined){
             console.log('tracks inside showTracks',tracks)
             let results = [];
+            let inherit = 'inherit';
             tracks.map((track, index) => { 
                 results.push(
                     <div className="col-md-3">
                         <Card 
                             name={track.name}
                             id={track.id}
-                            key={index}                            
-                            onClick={(event) => {event.preventDefault(); console.log(track.preview_url)}}
-                            text="Play Track"                                                     
+                            key={index}                                                                                                            
                         />
+                        <ReactPlayer 
+                            url={track.preview_url} 
+                            playing={false}
+                            width={inherit}
+                            height={80}
+                            style={{backgroundColor: '#27ae60'}}                            
+                            controls={true}
+                        />                        
                     </div>
                )                          
             })

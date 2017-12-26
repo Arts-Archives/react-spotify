@@ -79,6 +79,7 @@ export default class Dashboard extends Component {
         const { authToken } = this.props.location.state.auth;
         console.log('artistId',artistId);
         let albums;
+        let cleanName = name.replace(/[ ]/g,"-").replace(/[()]/g,"").trim();
         axios.get(`https://api.spotify.com/v1/artists/${artistId}/albums?album_type=album&access_token=${authToken}`)
         .then(response => {
             console.log(response);
@@ -86,7 +87,7 @@ export default class Dashboard extends Component {
             albums = response.data.items;            
         })
         .then(()=> this.props.history.push(
-            `/artist-albums/${artistId}/${name}`, 
+            `/artist-albums/${artistId}/${cleanName}`, 
             { 
                 data: { albums },
                 current_user: { user: this.state.current_user.user },
