@@ -47,7 +47,7 @@ p.lead {
 }
 
 nav.navbar {
-    background-color: black!important;
+    background-color: #212529!important;
 }
 
 .navbar-toggler {
@@ -173,7 +173,7 @@ input {
 }
 
 .card {
-    margin-bottom: 30px;
+    margin-bottom: 0;
     -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1), -1px 0 2px rgba(0, 0, 0, 0.05);
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1), -1px 0 2px rgba(0, 0, 0, 0.05);
 }
