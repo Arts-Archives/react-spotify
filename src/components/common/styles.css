@@ -16,9 +16,21 @@ https://bootstrapious.com/p/admin-template
 *     GENERAL STYLES
 * ==========================================================
 */
+html {
+    background-color: #292b2c!important;
+}
 
 body {
     overflow-x: hidden;
+    background-color: #292b2c!important;
+}
+
+p.display-5, h3.display-4 {
+    color: white!important;
+}
+
+.btn-primary {
+    background-color: #27ae60!important;
 }
 
 a,
@@ -28,6 +40,22 @@ span {
     text-decoration: none;
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
+}
+
+p.lead {
+    color: white!important;
+}
+
+nav.navbar {
+    background-color: black!important;
+}
+
+.navbar-toggler {
+    background: white!important;
+}
+
+a.nav-link {
+    color: white!important;
 }
 
 a:hover,
@@ -104,7 +132,7 @@ table {
 }
 
 .card-close .dropdown-menu a:hover {
-    background: #796AEE;
+    background: #27ae60;
     color: #fff !important;
 }
 
@@ -239,7 +267,7 @@ input {
 }
 
 .bg-violet {
-    background: #796AEE !important;
+    background: #27ae60 !important;
     color: #fff;
 }
 
@@ -288,11 +316,11 @@ input {
 }
 
 .text-violet {
-    color: #796AEE;
+    color: #27ae60;
 }
 
 .text-violet:hover {
-    color: #796AEE;
+    color: #27ae60;
 }
 
 .text-blue {
@@ -1187,7 +1215,7 @@ section.charts div[class*="col-"] {
 .form-control:focus {
     color: #495057;
     background-color: #fff;
-    border-color: #796AEE;
+    border-color: #27ae60;
     outline: none;
     -webkit-box-shadow: 0 0 0 0.2rem rgba(121, 106, 238, 0.25);
     box-shadow: 0 0 0 0.2rem rgba(121, 106, 238, 0.25);
@@ -1260,7 +1288,7 @@ input[type='submit'] {
 
 .checkbox-template:checked::before,
 .radio-template:checked::before {
-    background: #796AEE;
+    background: #27ae60;
 }
 
 .checkbox-template:checked::after,
@@ -1298,7 +1326,7 @@ input.input-material {
 }
 
 input.input-material:focus {
-    border-color: #796AEE;
+    border-color: #27ae60!important;
 }
 
 input.input-material~label {
@@ -1324,7 +1352,7 @@ input.input-material~label.error {
 input.input-material~label.active {
     font-size: 0.8em;
     top: -10px;
-    color: #796AEE;
+    color: #27ae60!important;
 }
 
 .form-group-material {
@@ -1364,7 +1392,7 @@ input.input-material~label.active {
 }
 
 .input-group ul.dropdown-menu a:hover {
-    color: #796AEE;
+    color: #27ae60!important;
 }
 
 .modal-content {
@@ -1612,15 +1640,15 @@ STYLE SWITCHER FOR DEMO
 }
 
 .btn-primary {
-    color: color-yiq(#796AEE);
-    background-color: #796AEE;
-    border-color: #796AEE;
+    color: color-yiq(#27ae60);
+    background-color: #27ae60;
+    border-color: #27ae60;
 }
 
 .btn-primary:hover {
     color: color-yiq(#5a48ea);
     background-color: #5a48ea;
-    border-color: #503ce9;
+    border-color: #27ae60;
 }
 
 .btn-primary:focus,
@@ -1631,15 +1659,15 @@ STYLE SWITCHER FOR DEMO
 
 .btn-primary.disabled,
 .btn-primary:disabled {
-    background-color: #796AEE;
-    border-color: #796AEE;
+    background-color: #27ae60;
+    border-color: #27ae60;
 }
 
 .btn-primary:not([disabled]):not(.disabled):active,
 .btn-primary:not([disabled]):not(.disabled).active,
 .show>.btn-primary.dropdown-toggle {
-    color: color-yiq(#503ce9);
-    background-color: #503ce9;
+    color: color-yiq(#27ae60);
+    background-color: #27ae60;
     border-color: #4631e7;
     -webkit-box-shadow: 0 0 0 0.2rem rgba(121, 106, 238, 0.5);
     box-shadow: 0 0 0 0.2rem rgba(121, 106, 238, 0.5);
@@ -1918,16 +1946,16 @@ STYLE SWITCHER FOR DEMO
 }
 
 .btn-outline-primary {
-    color: #796AEE;
+    color: #27ae60;
     background-color: transparent;
     background-image: none;
-    border-color: #796AEE;
+    border-color: #27ae60;
 }
 
 .btn-outline-primary:hover {
     color: #fff;
-    background-color: #796AEE;
-    border-color: #796AEE;
+    background-color: #27ae60;
+    border-color: #27ae60;
 }
 
 .btn-outline-primary:focus,
@@ -1938,7 +1966,7 @@ STYLE SWITCHER FOR DEMO
 
 .btn-outline-primary.disabled,
 .btn-outline-primary:disabled {
-    color: #796AEE;
+    color: #27ae60;
     background-color: transparent;
 }
 
@@ -1946,8 +1974,8 @@ STYLE SWITCHER FOR DEMO
 .btn-outline-primary:not([disabled]):not(.disabled).active,
 .show>.btn-outline-primary.dropdown-toggle {
     color: #fff;
-    background-color: #796AEE;
-    border-color: #796AEE;
+    background-color: #27ae60;
+    border-color: #27ae60;
     -webkit-box-shadow: 0 0 0 0.2rem rgba(121, 106, 238, 0.5);
     box-shadow: 0 0 0 0.2rem rgba(121, 106, 238, 0.5);
 }
@@ -2226,7 +2254,7 @@ body {
 }
 
 a {
-    color: #796AEE;
+    color: #27ae60;
     text-decoration: none;
 }
 
@@ -2334,7 +2362,7 @@ mark,
     padding: 0.5rem 1rem;
     margin-bottom: 2rem;
     font-size: 1.25rem;
-    border-left: 5px solid #796AEE;
+    border-left: 5px solid #27ae60;
 }
 
 .blockquote-footer {
@@ -2346,12 +2374,12 @@ mark,
 }
 
 .text-primary {
-    color: #796AEE !important;
+    color: #27ae60 !important;
 }
 
 a.text-primary:focus,
 a.text-primary:hover {
-    color: #503ce9 !important;
+    color: #27ae60!important;
 }
 
 
@@ -2371,8 +2399,8 @@ a.text-primary:hover {
 
 .page-item.active .page-link {
     color: #fff;
-    background-color: #796AEE;
-    border-color: #796AEE;
+    background-color: #27ae60;
+    border-color: #27ae60;
 }
 
 .page-item.disabled .page-link {
@@ -2384,7 +2412,7 @@ a.text-primary:hover {
 .page-link {
     padding: 0.5rem 0.75rem;
     line-height: 1.25;
-    color: #796AEE;
+    color: #27ae60;
     background-color: #fff;
     border: 1px solid #ddd;
 }
@@ -2436,12 +2464,12 @@ a.text-primary:hover {
 */
 
 .bg-primary {
-    background-color: #796AEE !important;
+    background-color: #27ae60 !important;
 }
 
 a.bg-primary:focus,
 a.bg-primary:hover {
-    background-color: #503ce9 !important;
+    background-color: #27ae60 !important;
 }
 
 .bg-secondary {
@@ -2508,7 +2536,7 @@ a.bg-dark:hover {
 }
 
 .border-primary {
-    border-color: #796AEE !important;
+    border-color: #27ae60 !important;
 }
 
 .border-secondary {
@@ -2540,12 +2568,12 @@ a.bg-dark:hover {
 }
 
 .text-primary {
-    color: #796AEE !important;
+    color: #27ae60!important;
 }
 
 a.text-primary:focus,
 a.text-primary:hover {
-    color: #503ce9 !important;
+    color: #27ae60!important;
 }
 
 .text-secondary {
@@ -2612,15 +2640,15 @@ a.text-dark:hover {
 }
 
 .badge-primary {
-    color: color-yiq(#796AEE);
-    background-color: #796AEE;
+    color: color-yiq(#27ae60);
+    background-color: #27ae60;
 }
 
 .badge-primary[href]:focus,
 .badge-primary[href]:hover {
-    color: color-yiq(#796AEE);
+    color: color-yiq(#27ae60);
     text-decoration: none;
-    background-color: #503ce9;
+    background-color: #27ae60;
 }
 
 .badge-secondary {

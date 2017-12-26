@@ -16,7 +16,7 @@ const Card = ({ imageURL, name, id, onClick, text }) => {
                     <p className="card-text"></p>
                     <button 
                         href="#" 
-                        className="btn btn-primary"
+                        className="btn btn-outline-success"
                         onClick={onClick} 
                     >
                         {text}
