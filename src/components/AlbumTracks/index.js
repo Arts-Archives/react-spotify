@@ -33,6 +33,11 @@ export default class AlbumTracks extends Component {
                             height={80}
                             style={{backgroundColor: '#27ae60'}}                            
                             controls={true}
+                            config={{
+                                file:{
+                                    forceAudio: true
+                                }
+                            }}                            
                         />                        
                     </div>
                )                          
