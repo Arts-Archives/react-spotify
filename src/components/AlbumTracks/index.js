@@ -20,7 +20,7 @@ export default class AlbumTracks extends Component {
             let inherit = 'inherit';
             tracks.map((track, index) => { 
                 results.push(
-                    <div className="col-md-3">
+                    <div className="col-md-3 mt-5">
                         <Card 
                             name={track.name}
                             id={track.id}
