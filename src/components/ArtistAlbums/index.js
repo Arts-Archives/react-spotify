@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Nav from '../Nav';
 import { Card } from '../common';
+import { spotifyAlbumURL } from '../../constants';
 
 export default class ArtistAlbums extends Component {
     constructor(props) {
@@ -22,8 +23,7 @@ export default class ArtistAlbums extends Component {
     }
 
     showAlbums = (albums) => {
-        if(albums!=undefined){
-            console.log('albums inside showAlbums',albums)
+        if(albums!=undefined){           
             let results = [];
             albums.map((album, index) => {
                 if(album.images[0]!=undefined){
@@ -50,13 +50,11 @@ export default class ArtistAlbums extends Component {
 
     getAlbumTracks = (event, albumId, name) => {
         event.preventDefault();
-        const { authToken } = this.props.location.state.auth;
-        console.log('albumId',albumId);
+        const { authToken } = this.props.location.state.auth;        
         let tracks;
         let cleanName = name.replace(/[ ]/g,"-").replace(/[()]/g,"").trim();
-        axios.get(`https://api.spotify.com/v1/albums/${albumId}/tracks?access_token=${authToken}`)
-        .then(response => {
-            console.log(response);
+        axios.get(`${spotifyAlbumURL}${albumId}/tracks?access_token=${authToken}`)
+        .then(response => {            
             this.setState({ tracks: response.data.items });
             tracks = response.data.items;            
         })
@@ -72,8 +70,18 @@ export default class ArtistAlbums extends Component {
     }
 
     render() {
-        console.log('this.props',this.props);
-        const { data: { albums }, current_user: { user: { images, display_name } } } = this.props.location.state;
+        const { 
+            data: { 
+                albums 
+            }, 
+            current_user: { 
+                user: { 
+                    images, 
+                    display_name 
+                } 
+            } 
+        } = this.props.location.state;
+
         return (
             <div>
                 <Nav 

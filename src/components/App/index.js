@@ -54,16 +54,7 @@ export default class App extends Component {
     }
   };
 
-  getToken = () => {
-    console.log("yep auth is true");
-  };
-
   render() {
-    console.log("this.state in app", this.state);
-    console.log("this.props in app", this.props);
-    if (this.state.authorized) {
-      this.getToken();
-    }
     return (
       <div className="container mt-5">
         <div className="row">

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { ProfileRow } from '../common/';
+import { spotifyPlaylistURL } from '../../constants/';
 
 export default class UserProfile extends Component {
 
@@ -14,7 +16,7 @@ export default class UserProfile extends Component {
     }
 
     componentDidMount = () => {
-        axios.get(`https://api.spotify.com/v1/me/playlists?access_token=${this.state.auth.authToken}`)
+        axios.get(`${spotifyPlaylistURL}${this.state.auth.authToken}`)
         .then(response => {
             this.setState({
                 play_lists: response.data.items
@@ -56,15 +58,21 @@ export default class UserProfile extends Component {
             })
             return playList
         }else{
-            return <p>No hits</p>
+            return <p>No playlist info found...</p>
         }
     }
     
 
     render() {
-        console.log('props in UserProfile', this.props);
-        console.log("state in UserProfile", this.state);
-        const { images, display_name, email, product, followers: { total } } = this.props.location.state.userData;
+        const { 
+            images, 
+            display_name, 
+            email, 
+            product, 
+            followers: { 
+                total 
+            } 
+        } = this.props.location.state.userData;
         const styles = {
             imageStyles: {
                 borderRadius: '50%'
@@ -72,7 +80,7 @@ export default class UserProfile extends Component {
             textStyle: {
                 color: 'white!important'
             }
-        }
+        };
         return (
             <div>
                 <div className="row mt-5">
@@ -81,48 +89,18 @@ export default class UserProfile extends Component {
                 <div className="row mt-5 justify-content-center">
                     <img 
                         src={images[0].url} 
-                        alt="" 
+                        alt="spotify user profile image" 
                         className="img-responsive"
                         style={styles.imageStyles}
                     />                    
                 </div>
-                <div className="row justify-content-center mt-3">
-                    <h1>
-                        <span className="badge badge-success px-3 py-3">
-                            {display_name}
-                        </span>
-                    </h1>
-                </div>
-                <div className="row justify-content-center mt-3">
-                    <h1>
-                        <span className="badge badge-success px-3 py-3">
-                            {email}
-                        </span>
-                    </h1>
-                </div>
-                <div className="row justify-content-center mt-3">
-                    <h1>
-                        <span className="badge badge-success px-3 py-3">
-                            {product} user
-                        </span>
-                    </h1>
-                </div>
-                <div className="row justify-content-center mt-3">
-                    <h1>
-                        <span className="badge badge-success px-3 py-3">
-                            {total} followers
-                        </span>
-                    </h1>
-                </div>
-                <div className="row justify-content-center mt-3">
-                    <h1>
-                        <span className="badge badge-success px-3 py-3">
-                            Public Playlists
-                        </span>
-                    </h1>
-                </div>
+                <ProfileRow text={display_name} />
+                <ProfileRow text={email} />
+                <ProfileRow text={`${product} user`} />
+                <ProfileRow text={`${total} followers`} />
+                <ProfileRow text="Public Playlists" />
                 <div className="row mt-3">
-                {this.renderPlaylist()}
+                    {this.renderPlaylist()}
                 </div>
             </div>
         )

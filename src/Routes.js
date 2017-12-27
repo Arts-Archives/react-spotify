@@ -64,15 +64,9 @@ class Routes extends Component {
     }
 
     render(){
-        return(
-            <div>
-                {this.renderRoutes(appRoutes)}
-            </div>
-        )
+        return <div>{this.renderRoutes(appRoutes)}</div>
     }
 }
-
-
 
 // Render App to DOM
 ReactDOM.render(
