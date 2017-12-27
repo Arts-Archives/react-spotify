@@ -78,7 +78,8 @@ export default class ArtistAlbums extends Component {
             <div>
                 <Nav 
                     imageURL={images[0].url} 
-                    display_name={display_name} 
+                    display_name={display_name}
+                    {...this.props} 
                 />
                 <div className="justify-content-center mt-5 row">
                     <p className="text-center display-5">

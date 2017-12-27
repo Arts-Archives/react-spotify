@@ -10,6 +10,7 @@ export default class Nav extends Component {
     }
 
     render() {
+       console.log('props in nav', this.props)
         return <nav className="navbar navbar-toggleable-md navbar-light bg-faded justify-content-between">
             <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon" />
@@ -26,9 +27,17 @@ export default class Nav extends Component {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    {this.props.display_name}
-                  </a>
+                  <Link 
+                    className="nav-link" 
+                    to={{
+                      pathname: "/user-profile",
+                      state: { 
+                        userData: this.props.location.state.current_user.user
+                      }
+                    }}
+                  >
+                    My Profile
+                  </Link>
                 </li>
               </ul>
             </div>

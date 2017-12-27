@@ -103,13 +103,14 @@ export default class Dashboard extends Component {
     }
 
     render() {
-        console.log('this.props in profile', this.props);
-        console.log('this.state in profile', this.state);
+        console.log('this.props in dashboard', this.props);
+        console.log('this.state in dashboard', this.state);
         const { images, display_name } = this.props.location.state.current_user.user;
         return <div>
             <Nav 
                 imageURL={images[0].url} 
                 display_name={display_name}
+                {...this.props}
             />
             <div className="row mt-5">
               <div className="col-lg">

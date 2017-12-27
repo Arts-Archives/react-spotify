@@ -7,6 +7,7 @@ import App from './components/App';
 import Dashboard from "./components/Dashboard";
 import ArtistAlbums from "./components/ArtistAlbums";
 import AlbumTracks from "./components/AlbumTracks";
+import UserProfile from "./components/UserProfile";
 
 const appRoutes = [
   {
@@ -28,6 +29,11 @@ const appRoutes = [
     exact: false,
     path: "/album-tracks/:albumId/:albumName",
     component: AlbumTracks
+  },
+  {
+    exact: false,
+    path: "/user-profile",
+    component: UserProfile
   }
 ];
 
