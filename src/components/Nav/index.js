@@ -32,7 +32,8 @@ export default class Nav extends Component {
                     to={{
                       pathname: "/user-profile",
                       state: { 
-                        userData: this.props.location.state.current_user.user
+                        userData: this.props.location.state.current_user.user,
+                        auth: this.props.location.state.auth
                       }
                     }}
                   >
