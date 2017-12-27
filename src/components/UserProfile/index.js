@@ -24,7 +24,7 @@ export default class UserProfile extends Component {
     render() {
         console.log('props in UserProfile', this.props);
         console.log("state in UserProfile", this.state);
-        const { images, display_name, email, product } = this.props.location.state.userData;
+        const { images, display_name, email, product, followers: { total } } = this.props.location.state.userData;
         const styles = {
             imageStyles: {
                 borderRadius: '50%'
@@ -48,22 +48,29 @@ export default class UserProfile extends Component {
                 </div>
                 <div className="row justify-content-center mt-3">
                     <h1>
-                        <span className="badge badge-success">
+                        <span className="badge badge-success px-3 py-3">
                             {display_name}
                         </span>
                     </h1>
                 </div>
                 <div className="row justify-content-center mt-3">
                     <h1>
-                        <span className="badge badge-success">
+                        <span className="badge badge-success px-3 py-3">
                             {email}
                         </span>
                     </h1>
                 </div>
                 <div className="row justify-content-center mt-3">
                     <h1>
-                        <span className="badge badge-success">
+                        <span className="badge badge-success px-3 py-3">
                             {product} user
+                        </span>
+                    </h1>
+                </div>
+                <div className="row justify-content-center mt-3">
+                    <h1>
+                        <span className="badge badge-success px-3 py-3">
+                            {total} followers
                         </span>
                     </h1>
                 </div>
