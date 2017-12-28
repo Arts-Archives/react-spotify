@@ -1,4 +1,4 @@
-let prod = false;
+let prod = true;
 
 const scopes = "user-read-private+user-read-email+playlist-read-private+user-top-read+user-read-recently-played";
 const redirectURI = prod ? "https://spot-react-ify.herokuapp.com/" : "http://localhost:8080/";
